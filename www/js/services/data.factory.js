@@ -37,7 +37,7 @@ app
         }
       }
 
-      window.alert('No user with that username and password!')
+      window.alert('No user with that username and password!');
     },
 
     logout: () => {
