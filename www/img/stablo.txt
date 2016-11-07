@@ -1,0 +1,65 @@
+roditelj(vesna, damir2).
+roditelj(vesna, davor).
+roditelj(vesna, dino).
+roditelj(neðad, damir2).
+roditelj(neðad, davor).
+roditelj(neðad, dino).
+roditelj(željka, vesna).
+roditelj(željka, damir).
+roditelj(mirko, vesna).
+roditelj(mirko, damir).
+roditelj(redžo, neðad).
+roditelj(redžo, ejub).
+roditelj(redžo, fetida).
+roditelj(nurija, neðad).
+roditelj(nurija, ejub).
+roditelj(nurija, fetida).
+roditelj(dubravka, diana).
+roditelj(dubravka, ivan).
+roditelj(damir, diana).
+roditelj(damir, ivan).
+roditelj(fetida, ermin).
+roditelj(fetida, amina).
+roditelj(ube, ermin).
+roditelj(ube, amina).
+roditelj(mediha, selma).
+roditelj(mediha, elma).
+roditelj(mediha, amra).
+roditelj(ejub, selma).
+roditelj(ejub, elma).
+roditelj(ejub, amra).
+
+zensko(vesna).
+zensko(željka).
+zensko(diana).
+zensko(dubravka).
+zensko(nurija).
+zensko(fetida).
+zensko(amina).
+zensko(mediha).
+zensko(selma).
+zensko(elma).
+zensko(amra).
+musko(damir2).
+musko(davor).
+musko(dino).
+musko(neðad).
+musko(redžo).
+musko(ejub).
+musko(ermin).
+musko(ube).
+musko(mirko).
+musko(damir).
+musko(ivan).
+
+dijete(X, Y):- roditelj(Y, X).
+majka(X, Y):- roditelj(X, Y), zensko(X).
+otac(X, Y):- roditelj(X, Y), musko(X).
+sestra(X, Y):- roditelj(Z, X), roditelj(Z, Y), zensko(X), X \= Y.
+brat(X, Y):- roditelj(Z, X), roditelj(Z, Y), musko(X), X \= Y.
+prethodnik(X, Z):- roditelj(X, Z).
+prethodnik(X, Z):- roditelj(X, Y), prethodnik(Y, Z).
+baka(X, Z):- roditelj(X, Y), prethodnik(Y, Z), zensko(X).
+djed(X, Z):- roditelj(X, Y), prethodnik(Y, Z), musko(X).
+ujak(X, Y):- roditelj(X, Y), brat(Y, X), musko(X).
+ujna(X, Y):- roditelj(X, Y), sestra(Y, X), zensko(X).

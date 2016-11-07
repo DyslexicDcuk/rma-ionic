@@ -1,0 +1,22 @@
+<ion-modal-view>
+  <ion-header-bar class="bar bar-header bar-positive">
+    <h1 class="title">New Location</h1>
+    <button class="button button-clear button-primary" ng-click="cancel()">Cancel</button>
+  </ion-header-bar>
+  <ion-content class="padding">
+    <form name="form" class="list" ng-submit="addLocation(newLocation)" novalidate="">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Title</span>
+        <input name="title" ng-model="newLocation.title" type="text" min="3" ng-required="true">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Description</span>
+        <textarea ng-model="newLocation.description" type="textarea"></textarea>
+      </label>
+
+      <button class="button button-full button-positive"
+        type="submit"
+        ng-disabled="!form.$valid">Add</button>
+    </form>
+  </ion-content>
+</ion-modal-view>

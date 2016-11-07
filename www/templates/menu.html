@@ -18,20 +18,17 @@
     </ion-header-bar>
     <ion-content>
       <ion-list>
-        <ion-item menu-close ng-click="login()">
+        <ion-item menu-close href="#/app/login" ng-hide="$root.currentUser">
           Login
         </ion-item>
-        <ion-item menu-close href="#/app/search">
-          Search
+        <ion-item menu-close href="#/app/registration" ng-hide="$root.currentUser">
+          Register
         </ion-item>
-        <ion-item menu-close href="#/app/browse">
-          Browse
+        <ion-item menu-close href="#/app/map" ng-show="$root.currentUser">
+          Map
         </ion-item>
-        <ion-item menu-close href="#/app/playlists">
-          Playlists
-        </ion-item>
-        <ion-item menu-close href="#/app/gps">
-          GPS
+        <ion-item menu-close ng-click="logout()" ng-show="$root.currentUser">
+          Logout
         </ion-item>
       </ion-list>
     </ion-content>

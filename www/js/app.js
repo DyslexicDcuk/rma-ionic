@@ -4,14 +4,13 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter',
+var app = angular.module('starter',
   [
     'ionic',
-    'starter.controllers',
-    'starter.gps'
+    'ngCordova'
   ])
 
-  .run(function ($ionicPlatform) {
+  .run(function ($ionicPlatform, $rootScope, DataFactory) {
     $ionicPlatform.ready(function () {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -24,6 +23,9 @@ angular.module('starter',
         // org.apache.cordova.statusbar required
         StatusBar.styleDefault();
       }
+
+      $rootScope.currentUser = DataFactory.getCurrentUser();
+
     });
   })
 
@@ -37,52 +39,35 @@ angular.module('starter',
         controller: 'AppCtrl'
       })
 
-      .state('app.search', {
-        url: '/search',
+      .state('app.registration', {
+        url: '/registration',
         views: {
           'menuContent': {
-            templateUrl: 'templates/search.html'
+            templateUrl: 'templates/registration.html',
+            controller: 'RegistrationCtrl'
           }
         }
       })
 
-      .state('app.browse', {
-        url: '/browse',
+      .state('app.login', {
+        url: '/login',
         views: {
           'menuContent': {
-            templateUrl: 'templates/browse.html'
-          }
-        }
-      })
-      .state('app.playlists', {
-        url: '/playlists',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/playlists.html',
-            controller: 'PlaylistsCtrl'
+            templateUrl: 'templates/login.html',
+            controller: 'LoginCtrl'
           }
         }
       })
 
-      .state('app.single', {
-        url: '/playlists/:playlistId',
+      .state('app.map', {
+        url: '/map',
         views: {
           'menuContent': {
-            templateUrl: 'templates/playlist.html',
-            controller: 'PlaylistCtrl'
-          }
-        }
-      })
-
-      .state('app.gps', {
-        url: '/gps',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/gps.html',
-            controller: 'GpsCtrl'
+            templateUrl: 'templates/map.html',
+            controller: 'MapCtrl'
           }
         }
       });
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/app/playlists');
+    $urlRouterProvider.otherwise('/app/login');
   });
