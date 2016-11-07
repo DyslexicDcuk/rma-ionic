@@ -51,8 +51,12 @@ app
   $scope.addLocation = (newLocation) => {
     newLocation.latLng = $scope.map.getCenter();
     newLocation.createdBy = DataFactory.getCurrentUser().id;
-    newLocation.owners = [newLocation.createdBy];
+    newLocation.shared = false;
     DataFactory.addLocation(newLocation);
+
+    $scope.newLocation = {};
+    $scope.modal.hide();
+    $state.go('app.locations', {}, {location: 'replace'});
   }
 
   $scope.cancel = () => {

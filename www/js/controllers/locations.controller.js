@@ -17,5 +17,5 @@ app
 
     $ionicHistory.nextViewOptions({ disableBack: true });
     $state.go('app.locations', {}, {location: 'replace'});
-  }
+  };
 })

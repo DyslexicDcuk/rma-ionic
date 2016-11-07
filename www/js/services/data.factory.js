@@ -24,7 +24,6 @@ app
   const CURRENT_USER = 'CURRENT_USER';
   const LOCATIONS = 'LOCATIONS';
 
-
 	return {
     login: (credentials) => {
       const users = JSON.parse(window.localStorage.getItem(USERS)) || [];
@@ -84,7 +83,7 @@ app
       let result = [];
 
       locations.forEach((item) => {
-        if (item.owners.includes(user.id)) result.push(item);
+        if (item.createdBy == user.id || item.shared) result.push(item);
       })
 
       return result;

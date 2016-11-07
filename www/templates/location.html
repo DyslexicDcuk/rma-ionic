@@ -10,6 +10,18 @@
         <textarea ng-model="loc.description" type="textarea"></textarea>
       </label>
 
+      <label class="item item-toggle">
+        Share with everyone
+        <label class="toggle">
+          <input type="checkbox" ng-model="loc.shared">
+          <div class="track">
+            <div class="handle"></div>
+          </div>
+        </label>
+      </label>
+
+
+
       <button class="button button-full button-positive"
         type="submit"
         ng-disabled="!form.$valid">SAVE</button>
