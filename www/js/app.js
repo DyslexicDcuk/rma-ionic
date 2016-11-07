@@ -67,7 +67,27 @@ var app = angular.module('starter',
             controller: 'MapCtrl'
           }
         }
-      });
+      })
+
+      .state('app.locations', {
+      url: '/locations',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/locations.html',
+          controller: 'LocationsCtrl'
+        }
+      }
+    })
+
+    .state('app.location', {
+      url: '/locations/:locationId',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/location.html',
+          controller: 'LocationCtrl'
+        }
+      }
+    });
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/app/login');
   });

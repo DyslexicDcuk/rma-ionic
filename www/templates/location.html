@@ -1,0 +1,18 @@
+<ion-view view-title="Location Details">
+  <ion-content class="padding">
+    <form name="form" class="list" ng-submit="saveLocation(loc)" novalidate="">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Title</span>
+        <input name="title" ng-model="loc.title" type="text" min="3" ng-required="true">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Description</span>
+        <textarea ng-model="loc.description" type="textarea"></textarea>
+      </label>
+
+      <button class="button button-full button-positive"
+        type="submit"
+        ng-disabled="!form.$valid">SAVE</button>
+    </form>
+  </ion-content>
+</ion-view>

@@ -22,6 +22,8 @@ app
 .factory('DataFactory', function($rootScope) {
   const USERS = 'USERS';
   const CURRENT_USER = 'CURRENT_USER';
+  const LOCATIONS = 'LOCATIONS';
+
 
 	return {
     login: (credentials) => {
@@ -71,7 +73,41 @@ app
     },
 
     addLocation: (location) => {
-      console.log(location);
+      let locations = JSON.parse(window.localStorage.getItem(LOCATIONS)) || [];
+      location.id = (new Date).getTime();
+      locations.push(location);
+      window.localStorage.setItem(LOCATIONS, JSON.stringify(locations));
+    },
+
+    getLocations: (user) => {
+      const locations = JSON.parse(window.localStorage.getItem(LOCATIONS)) || [{}];
+      let result = [];
+
+      locations.forEach((item) => {
+        if (item.owners.includes(user.id)) result.push(item);
+      })
+
+      return result;
+    },
+
+    getLocationById: (id) => {
+      const locations = JSON.parse(window.localStorage.getItem(LOCATIONS)) || [{}];
+      let result;
+      locations.forEach((item) => {
+        if (item.id.toString() == id.toString()) result = item;
+      });
+
+      return result;
+    },
+
+    saveLocation: (loc) => {
+      let locations = JSON.parse(window.localStorage.getItem(LOCATIONS)) || [];
+
+      for (let i=0; i<locations.length; i++) {
+        if (locations[i].id == loc.id) locations[i] = loc;
+      };
+
+      window.localStorage.setItem(LOCATIONS, JSON.stringify(locations));
     }
   }
 })

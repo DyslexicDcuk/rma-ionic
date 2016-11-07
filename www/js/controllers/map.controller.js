@@ -24,11 +24,34 @@ app
     };
 
     $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+    google.maps.event.addListenerOnce($scope.map, 'idle', function(){
+      const locations = DataFactory.getLocations(DataFactory.getCurrentUser());
+
+      locations.forEach((item) => {
+        const marker = new google.maps.Marker({
+          map: $scope.map,
+          animation: google.maps.Animation.DROP,
+          position: item.latLng
+        });
+
+        const infoWindow = new google.maps.InfoWindow({
+          content: item.title
+        });
+
+        google.maps.event.addListener(marker, 'click', function () {
+          infoWindow.open($scope.map, marker);
+        });
+      });
+    });
   }, function(error){
     console.log("Could not get location");
   });
 
   $scope.addLocation = (newLocation) => {
+    newLocation.latLng = $scope.map.getCenter();
+    newLocation.createdBy = DataFactory.getCurrentUser().id;
+    newLocation.owners = [newLocation.createdBy];
     DataFactory.addLocation(newLocation);
   }
 
